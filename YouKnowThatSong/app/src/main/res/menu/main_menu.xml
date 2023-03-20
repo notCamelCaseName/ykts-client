@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Menu principal"
+        android:id="@+id/menu_main"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_home"/>
+
+    <item
+        android:title="Paramètres"
+        android:id="@+id/menu_settings"/>
+
+    <item
+        android:title="À propos"
+        android:id="@+id/menu_about"/>
+</menu>
