@@ -1,4 +1,7 @@
+/**
+ * Named tuple containing a sample and its position in the Spectrogram
+ */
 public class numberedSample {
-    int id;
-    double[] data;
+    public int id;
+    public double[] data;
 }

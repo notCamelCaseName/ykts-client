@@ -1,13 +1,16 @@
 import java.util.Arrays;
 
+/**
+ * Collection of methods to compute th Fourier transform of a signal
+ */
 public class FrequencyCalculator {
-    public static double[] fftReal(double[] x) {
-        Complex[] x_complex = toComplexArray(x);
-        Complex[] f_complex = fft(x_complex);
-        return normalize(getFrequencies(f_complex));
-    }
 
-    static Complex[] fft(Complex[] x) {
+    /**
+     * Fast discrete fourier transform (fft) using the Cooley-Tukey algorithm
+     * @param x Original complex signal
+     * @return The Fourier transform of x
+     */
+    public static Complex[] fft(Complex[] x) {
         int n = x.length;
 
         // base case
@@ -42,7 +45,23 @@ public class FrequencyCalculator {
         return y;
     }
 
-    static Complex[] toComplexArray(double[] f) {
+    /**
+     * Wrapper for the fft function to act on real data
+     * @param x Initial data
+     * @return Real fourier transform of x
+     */
+    public static double[] fftReal(double[] x) {
+        Complex[] x_complex = toComplexArray(x);
+        Complex[] f_complex = fft(x_complex);
+        return getFrequencies(f_complex);
+    }
+
+    /**
+     * Converts double array to Complex array
+     * @param f double array
+     * @return f converted to Complex array
+     */
+    private static Complex[] toComplexArray(double[] f) {
         Complex[] c = new Complex[f.length];
         for (int i=0; i<f.length; i++) {
             c[i] = new Complex(f[i], 0);
@@ -50,19 +69,16 @@ public class FrequencyCalculator {
         return c;
     }
 
-    static double[] getFrequencies(Complex[] data) {
+    /**
+     * Extract frequencies from the result of a complex fourier transform
+     * @param data Complex array, usually result of a fourier transform
+     * @return Array of data's element's module
+     */
+    private static double[] getFrequencies(Complex[] data) {
         double[] f = new double[data.length];
         for (int i=0; i<data.length; i++) {
             f[i] = data[i].getMod();
         }
         return f;
-    }
-
-    static double[] normalize(double[] data) {
-        double m = Arrays.stream(data).max().getAsDouble();
-        for (int i = 0; i < data.length; i++) {
-            data[i] /= m;
-        }
-        return data;
     }
 }

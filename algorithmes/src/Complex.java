@@ -1,5 +1,8 @@
 import static java.lang.Math.*;
 
+/**
+ * Class representing complex numbers
+ */
 public class Complex {
     private double re;
     private double im;
@@ -9,6 +12,12 @@ public class Complex {
         this.im = im;
     }
 
+    /**
+     * Construct complex using complex exponential
+     * @param r Radius of the complex
+     * @param theta Argument of the complex
+     * @return A complex = r*exp(i*theta)
+     */
     public static Complex exp(double r, double theta) {
         return new Complex(r*cos(theta), r*sin(theta));
     }
@@ -20,6 +29,9 @@ public class Complex {
         return re;
     }
 
+    /**
+     * @return Module of the complex
+     */
     public double getMod() {
         return sqrt(re*re + im*im);
     }
