@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import UtilityClasses.Complex;
 
 /**
  * Collection of methods to compute th Fourier transform of a signal
@@ -57,9 +57,9 @@ public class FrequencyCalculator {
     }
 
     /**
-     * Converts double array to Complex array
+     * Converts double array to MathClasses.Complex array
      * @param f double array
-     * @return f converted to Complex array
+     * @return f converted to MathClasses.Complex array
      */
     private static Complex[] toComplexArray(double[] f) {
         Complex[] c = new Complex[f.length];
@@ -71,7 +71,7 @@ public class FrequencyCalculator {
 
     /**
      * Extract frequencies from the result of a complex fourier transform
-     * @param data Complex array, usually result of a fourier transform
+     * @param data MathClasses.Complex array, usually result of a fourier transform
      * @return Array of data's element's module
      */
     private static double[] getFrequencies(Complex[] data) {

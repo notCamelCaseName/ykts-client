@@ -15,7 +15,7 @@ public class Main {
         double[] dataf = FrequencyCalculator.fftReal(data);
         System.out.println(Arrays.toString(dataf));
         for (int i = 0; i<sampleSize; i++) {
-            if (dataf[i] == 1.) {
+            if (dataf[i] >= .85) {
                 System.out.println(i);
             }
         }

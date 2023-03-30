@@ -1,4 +1,6 @@
-import java.util.Arrays;
+import UtilityClasses.Point;
+import UtilityClasses.numberedSample;
+
 import java.util.Vector;
 
 /**
@@ -18,6 +20,14 @@ public class Spectrogram {
     public Spectrogram(double sampleTime) {
         this.data = new Vector<>();
         this.sampleTime = sampleTime;
+    }
+
+    public Vector<double[]> getData() {
+        return data;
+    }
+
+    public double getSampleTime() {
+        return sampleTime;
     }
 
     /**
@@ -64,22 +74,21 @@ public class Spectrogram {
 
     /**
      * Find key points in the spectrogram
-     * @param threshold Amplitude threshold which when an amplitude is detected above it, it is considered a key point
+     * @param threshold Threshold to filter points
      * @return The list of key points as couples (time, frequency)
      */
-    public Vector<Double[]> getKeyPoints(double threshold) {
-        Vector<Double[]> res = new Vector<>();
+    public Vector<Point> getKeyPoints(double threshold) {
+        Vector<Point> res = new Vector<>();
         // Iterate through the array and extracting into res coordinates that match the property
         for (int t = 0; t<this.data.size(); t++) {
             double[] sampleFrequencies = this.data.get(t);
             for (int f = 0; f<sampleFrequencies.length; f++) {
-                if (sampleFrequencies[f]>=threshold) {
-                    res.add(new Double[]{t*sampleTime,f/sampleTime});
+                if (sampleFrequencies[f]>= threshold) {
+                    res.add(new Point(t*sampleTime,f/sampleTime, this.data.get(t)[f]));
                 }
             }
         }
         return res;
     }
-
 
 }
